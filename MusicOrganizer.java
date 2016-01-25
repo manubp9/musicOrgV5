@@ -205,14 +205,7 @@ public class MusicOrganizer
     }
 
     /**
-     * A partir del proyecto de la actividad 0053, añade todo lo que consideres necesario para que exista 
-     * un método en la clase MusicOrganizer llamado isPlaying que cuando sea invocado informe por pantalla 
-     * de si en este momento se está reproduciendo un track completo o si no (no tengas en cuenta el caso de reproducir samples de tracks).
-     * Testea los cambios y luego haz un commit.
-     * Modifica la clase MusicOrganizer para que, en el caso de que se este reproduciendo un track completo 
-     * en este momento y deseemos reproducir un nuevo track, se muestre un mensaje de error por pantalla informando 
-     * de que ya hay una reproducción en curso (hasta ahora ambas canciones sonarían a la vez).
-     * Testea los cambios y luego haz un commit. Indica la URL de dicho commit.
+     * Metodo que muestra por pantalla si se estan reproduciendo canciones o no
      */
     public void isPlayingASong(){
         if (isPlaying = false){
