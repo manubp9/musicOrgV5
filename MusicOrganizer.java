@@ -15,6 +15,8 @@ public class MusicOrganizer
     private MusicPlayer player;
     // A reader that can read music files and load them as tracks.
     private TrackReader reader;
+    //muestra si se esta reproduciendo la cancion
+    private boolean isPlaying;
 
     /**
      * Create a MusicOrganizer
@@ -24,9 +26,11 @@ public class MusicOrganizer
         tracks = new ArrayList<Track>();
         player = new MusicPlayer();
         reader = new TrackReader();
+        isPlaying = false;
         readLibrary("audio");
         System.out.println("Music library loaded. " + getNumberOfTracks() + " tracks.");
         System.out.println();
+
     }
 
     /**
@@ -43,12 +47,12 @@ public class MusicOrganizer
      */
     public void findInTitle(String TitleSearch){
         for (Track track : tracks){
-        String title = track.getTitle();
-        if (title.contains(TitleSearch)){
-        System.out.println(track.getDetails());
+            String title = track.getTitle();
+            if (title.contains(TitleSearch)){
+                System.out.println(track.getDetails());
+            }
         }
-        }
-        
+
     }
 
     /**
@@ -71,6 +75,7 @@ public class MusicOrganizer
             player.startPlaying(track.getFilename());
             System.out.println("Now playing: " + track.getArtist() + " - " + track.getTitle());
             tracks.get(index).incrementCount();
+            isPlaying = true;
         }
     }
 
@@ -130,9 +135,10 @@ public class MusicOrganizer
             tracks.remove(index);
         }
     }
+
     public void añadirGenero(int index,String newGenero){
-         Track track = tracks.get(index);
-         track.addGenero(newGenero);
+        Track track = tracks.get(index);
+        track.addGenero(newGenero);
     }
 
     /**
@@ -140,9 +146,16 @@ public class MusicOrganizer
      */
     public void playFirst()
     {
-        if(tracks.size() > 0) {
-            player.startPlaying(tracks.get(0).getFilename());
-            tracks.get(0).incrementCount();
+        if (isPlaying)
+        {
+            System.out.println("Ya se esta reproduciendo una cancion");
+        }
+        else{
+            if(tracks.size() > 0) {
+                player.startPlaying(tracks.get(0).getFilename());
+                tracks.get(0).incrementCount();
+                isPlaying = true;
+            }
         }
     }
 
@@ -152,6 +165,7 @@ public class MusicOrganizer
     public void stopPlaying()
     {
         player.stop();
+        isPlaying = false;
     }
 
     /**
@@ -187,6 +201,26 @@ public class MusicOrganizer
         // Put all thetracks into the organizer.
         for(Track track : tempTracks) {
             addTrack(track);
+        }
+    }
+
+    /**
+     * A partir del proyecto de la actividad 0053, añade todo lo que consideres necesario para que exista 
+     * un método en la clase MusicOrganizer llamado isPlaying que cuando sea invocado informe por pantalla 
+     * de si en este momento se está reproduciendo un track completo o si no (no tengas en cuenta el caso de reproducir samples de tracks).
+     * Testea los cambios y luego haz un commit.
+     * Modifica la clase MusicOrganizer para que, en el caso de que se este reproduciendo un track completo 
+     * en este momento y deseemos reproducir un nuevo track, se muestre un mensaje de error por pantalla informando 
+     * de que ya hay una reproducción en curso (hasta ahora ambas canciones sonarían a la vez).
+     * Testea los cambios y luego haz un commit. Indica la URL de dicho commit.
+     */
+    public void isPlayingASong(){
+        if (isPlaying = false){
+            System.out.println("No se esta reproduciendo niguna cancion");
+        }
+        else{ 
+            System.out.println("Ya se esta reproduciendo una cancion");
+
         }
     }
 }
