@@ -130,6 +130,10 @@ public class MusicOrganizer
             tracks.remove(index);
         }
     }
+    public void añadirGenero(int index,String newGenero){
+         Track track = tracks.get(index);
+         track.addGenero(newGenero);
+    }
 
     /**
      * Play the first track in the collection, if there is one.
