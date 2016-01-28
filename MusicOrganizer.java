@@ -2,7 +2,6 @@ import java.util.Iterator;
 import java.util.ArrayList;
 import java.util.Random;
 
-
 /**
  * A class to hold details of audio tracks.
  * Individual tracks may be played.
@@ -20,9 +19,8 @@ public class MusicOrganizer
     private TrackReader reader;
     //muestra si se esta reproduciendo la cancion
     private boolean isPlaying;
-     //Un objeto iterator que recorre toda las canciones de la lista
+    //Un objeto iterator que recorre toda las canciones de la lista
     private Iterator<Track> iterador; 
-    
 
     /**
      * Create a MusicOrganizer
@@ -37,9 +35,8 @@ public class MusicOrganizer
         System.out.println("Music library loaded. " + getNumberOfTracks() + " tracks.");
         System.out.println();
         iterador = tracks.iterator();//inicializo el iterador diciendole que se inicie en el arraylist tracks
-        
-    }
 
+    }
 
     /**
      * Add a track file to the collection.
@@ -71,6 +68,7 @@ public class MusicOrganizer
     {
         tracks.add(track);
     }
+
     /**
      * 
      */
@@ -78,8 +76,9 @@ public class MusicOrganizer
         Random rnd = new Random();
         int numeroRandom = rnd.nextInt(tracks.size());
         playTrack(numeroRandom);
-        
+
     }
+
     /**
      * Play a track in the collection.
      * @param index The index of the track to be played.
@@ -87,11 +86,15 @@ public class MusicOrganizer
     public void playTrack(int index)
     {
         if(indexValid(index)) {
+            if (isPlaying != true){
             Track track = tracks.get(index);
             player.startPlaying(track.getFilename());
             System.out.println("Now playing: " + track.getArtist() + " - " + track.getTitle());
             tracks.get(index).incrementCount();
-            isPlaying = true;
+            isPlaying = true;}
+            else{
+                System.out.println("Ya se esta reproduciendo una cancion");
+            }
         }
     }
 
@@ -232,6 +235,7 @@ public class MusicOrganizer
 
         }
     }
+
     /**
      * invoca un metodo iterador que imprime por pantalla la informacion de las canciones 
      * incluidas en el array list tracks...
@@ -242,6 +246,7 @@ public class MusicOrganizer
             System.out.println(iterador.next().getDetails());
         }
     }
+
     /**
      * metodo quue elimina track con el mismo nombre de artista
      */
@@ -252,6 +257,7 @@ public class MusicOrganizer
             }
         }
     }
+
     /**
      * metodo quue elimina track con el mismo nombre de artista
      */
@@ -262,6 +268,6 @@ public class MusicOrganizer
             }
         }
     }
-    
-    }
- 
+
+}
+
