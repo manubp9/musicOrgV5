@@ -241,6 +241,16 @@ public class MusicOrganizer
             }
         }
     }
+    /**
+     * metodo quue elimina track con el mismo nombre de artista
+     */
+    public void removeByTitle(String title){
+        while (iterador.hasNext()){
+            if (iterador.next().getTitle().contains(title)){
+                iterador.remove();
+            }
+        }
+    }
     
     }
  
