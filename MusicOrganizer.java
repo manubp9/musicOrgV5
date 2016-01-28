@@ -46,6 +46,14 @@ public class MusicOrganizer
     {
         tracks.add(new Track(filename));
     }
+    /**
+     * Implementa un método llamado playShuffle que permita reproducir los primeros segundos de cada canción en orden 
+     * aleatorio y que cumpla los siguientes requisitos:
+     * Cada canción debe reproducirse una única vez y deben reproducirse todas las canciones.
+     * Los contadores de reproducción deben actualizarse correctamente.
+     * Debe mostrar por pantalla los detalles de la canción que está sonando en este momento.
+     * La forma de solucionarlo debe basarse en el uso del método shuffle de la clase Collections que deberás investigar en Internet.
+     */
 
     /**
      * metodo  que imprime por pantalla la informacion de los tracks 
@@ -70,12 +78,12 @@ public class MusicOrganizer
     }
 
     /**
-     * 
+     * reproduce una cancion aleatoriamente
      */
     public void playRandom(){
-        Random rnd = new Random();
-        int numeroRandom = rnd.nextInt(tracks.size());
-        playTrack(numeroRandom);
+        Random rnd = new Random();//variable local de tipo random
+        int numeroRandom = rnd.nextInt(tracks.size());//igualo la variable local numeroRandom a rnd entre el tamaño de la lista seleccionada
+        playTrack(numeroRandom);//reproduce la cancion con el nuemro generado por el random
 
     }
 
