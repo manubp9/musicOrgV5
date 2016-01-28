@@ -1,5 +1,6 @@
-import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.ArrayList;
+
 
 /**
  * A class to hold details of audio tracks.
@@ -12,14 +13,14 @@ public class MusicOrganizer
 {
     // An ArrayList for storing music tracks.
     private ArrayList<Track> tracks;
-    //Un objeto iterator que recorre toda las canciones de la lista
-    private Iterator<Track> iterador; 
     // A player for the music tracks.
     private MusicPlayer player;
     // A reader that can read music files and load them as tracks.
     private TrackReader reader;
     //muestra si se esta reproduciendo la cancion
     private boolean isPlaying;
+     //Un objeto iterator que recorre toda las canciones de la lista
+    private Iterator<Track> iterador; 
 
     /**
      * Create a MusicOrganizer
@@ -27,26 +28,15 @@ public class MusicOrganizer
     public MusicOrganizer()
     {
         tracks = new ArrayList<Track>();
-        iterador = tracks.iterator();//inicializo el iterador diciendole que se inicie en el arraylist tracks
         player = new MusicPlayer();
         reader = new TrackReader();
         isPlaying = false;
         readLibrary("audio");
         System.out.println("Music library loaded. " + getNumberOfTracks() + " tracks.");
         System.out.println();
-
+        iterador = tracks.iterator();//inicializo el iterador diciendole que se inicie en el arraylist tracks
     }
 
-    /**
-     * invoca un metodo iterador que imprime por pantalla la informacion de las canciones 
-     * incluidas en el array list tracks...
-     */
-    public void listAllTrackWithIterator(){
-        while (iterador.hasNext())
-        {
-            System.out.println (iterador.next().getDetails());
-        }
-    }
 
     /**
      * Add a track file to the collection.
@@ -231,4 +221,26 @@ public class MusicOrganizer
 
         }
     }
-}
+    /**
+     * invoca un metodo iterador que imprime por pantalla la informacion de las canciones 
+     * incluidas en el array list tracks...
+     */
+    public void listAllTrackWithIterator(){
+        while (iterador.hasNext())
+        {
+            System.out.println(iterador.next().getDetails());
+        }
+    }
+    /**
+     * metodo quue elimina track con el mismo nombre de artista
+     */
+    public void removeByArtist(String artist){
+        while (iterador.hasNext()){
+            if (iterador.next().getArtist().contains(artist)){
+                iterador.remove();
+            }
+        }
+    }
+    
+    }
+ 
