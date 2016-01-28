@@ -25,13 +25,13 @@ public class MusicOrganizer
     /**
      * Create a MusicOrganizer
      */
-    public MusicOrganizer()
+    public MusicOrganizer(String carpetaDeAudio)
     {
         tracks = new ArrayList<Track>();
         player = new MusicPlayer();
         reader = new TrackReader();
         isPlaying = false;
-        readLibrary("audio");
+        readLibrary(carpetaDeAudio);
         System.out.println("Music library loaded. " + getNumberOfTracks() + " tracks.");
         System.out.println();
         iterador = tracks.iterator();//inicializo el iterador diciendole que se inicie en el arraylist tracks
