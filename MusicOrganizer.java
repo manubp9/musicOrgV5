@@ -1,5 +1,6 @@
 import java.util.Iterator;
 import java.util.ArrayList;
+import java.util.Random;
 
 
 /**
@@ -21,6 +22,7 @@ public class MusicOrganizer
     private boolean isPlaying;
      //Un objeto iterator que recorre toda las canciones de la lista
     private Iterator<Track> iterador; 
+    
 
     /**
      * Create a MusicOrganizer
@@ -35,6 +37,7 @@ public class MusicOrganizer
         System.out.println("Music library loaded. " + getNumberOfTracks() + " tracks.");
         System.out.println();
         iterador = tracks.iterator();//inicializo el iterador diciendole que se inicie en el arraylist tracks
+        
     }
 
 
@@ -68,7 +71,15 @@ public class MusicOrganizer
     {
         tracks.add(track);
     }
-
+    /**
+     * 
+     */
+    public void playRandom(){
+        Random rnd = new Random();
+        int numeroRandom = rnd.nextInt(tracks.size());
+        playTrack(numeroRandom);
+        
+    }
     /**
      * Play a track in the collection.
      * @param index The index of the track to be played.
