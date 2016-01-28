@@ -39,7 +39,7 @@ public class MusicOrganizer
 
     /**
      * invoca un metodo iterador que imprime por pantalla la informacion de las canciones 
-     * incluidas en el array list tracks.
+     * incluidas en el array list tracks...
      */
     public void listAllTrackWithIterator(){
         while (iterador.hasNext())
