@@ -86,6 +86,29 @@ public class MusicOrganizer
             player.playSample(track.getFilename());
         }
     }
+       /**
+        * Reproduce una lista copiada de la lista principal aleatoriamente.cada vez que se acaba de reproducir una cancion se elimina de la lista
+        */
+    public void playShuffle2()
+    {
+        ArrayList<Track> listaCopiada = new ArrayList<>();//creo un arralist de tipo track que se llama lista copiada
+        listaCopiada = (ArrayList)tracks.clone();// igualo lista copiada (vacia) a la lista de canciones con el metodo clone de la clase ArrayList
+        int cancionesRep = 0;//variable local para contar las canciones reproducidas
+        while(cancionesRep < tracks.size()){
+            Random aleat = new Random();//V local de nuemro aleatorio
+            int numAleatorio = aleat.nextInt(listaCopiada.size());//Variable local int igualada al numero aleatorio 
+                                                                  //invocando nextInt tomando de parametro el tamaño lista 
+            Track track = listaCopiada.get(numAleatorio);//V local de tipo track, que equivale a un numero aleatorio de entre la lista
+            
+            track.incrementCount();
+            System.out.println("Reproduciendo ahora " + track.getDetails());
+            player.playSample(track.getFilename());
+            listaCopiada.remove(numAleatorio);//elimina de la lista la cancion reproducida
+            cancionesRep ++;
+            
+        }
+    }
+
 
     /**
      * reproduce una cancion aleatoriamente
@@ -95,6 +118,7 @@ public class MusicOrganizer
         int numeroRandom = rnd.nextInt(tracks.size());//igualo la variable local numeroRandom a rnd entre el tamaño de la lista seleccionada
         playTrack(numeroRandom);//reproduce la cancion con el nuemro generado por el random
     }
+
 
     /**
      * Play a track in the collection.
