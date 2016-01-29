@@ -1,6 +1,7 @@
 import java.util.Iterator;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Collections;
 
 /**
  * A class to hold details of audio tracks.
@@ -46,14 +47,6 @@ public class MusicOrganizer
     {
         tracks.add(new Track(filename));
     }
-    /**
-     * Implementa un método llamado playShuffle que permita reproducir los primeros segundos de cada canción en orden 
-     * aleatorio y que cumpla los siguientes requisitos:
-     * Cada canción debe reproducirse una única vez y deben reproducirse todas las canciones.
-     * Los contadores de reproducción deben actualizarse correctamente.
-     * Debe mostrar por pantalla los detalles de la canción que está sonando en este momento.
-     * La forma de solucionarlo debe basarse en el uso del método shuffle de la clase Collections que deberás investigar en Internet.
-     */
 
     /**
      * metodo  que imprime por pantalla la informacion de los tracks 
@@ -76,6 +69,23 @@ public class MusicOrganizer
     {
         tracks.add(track);
     }
+    /**
+     * reproducir los primeros segundos de cada canción en orden 
+     * aleatorio y que cumpla los siguientes requisitos:
+     * Cada canción debe reproducirse una única vez y deben reproducirse todas las canciones.
+     * Los contadores de reproducción deben actualizarse correctamente.
+     * Debe mostrar por pantalla los detalles de la canción que está sonando en este momento.
+     */
+    public void playShuffle()
+    {
+        Collections.shuffle(tracks);
+        for (Track track : tracks)
+        {
+            track.incrementCount();
+            System.out.println("Reproduciendo ahora " + track.getDetails());
+            player.playSample(track.getFilename());
+        }
+    }
 
     /**
      * reproduce una cancion aleatoriamente
@@ -84,7 +94,6 @@ public class MusicOrganizer
         Random rnd = new Random();//variable local de tipo random
         int numeroRandom = rnd.nextInt(tracks.size());//igualo la variable local numeroRandom a rnd entre el tamaño de la lista seleccionada
         playTrack(numeroRandom);//reproduce la cancion con el nuemro generado por el random
-
     }
 
     /**
@@ -95,11 +104,11 @@ public class MusicOrganizer
     {
         if(indexValid(index)) {
             if (isPlaying != true){
-            Track track = tracks.get(index);
-            player.startPlaying(track.getFilename());
-            System.out.println("Now playing: " + track.getArtist() + " - " + track.getTitle());
-            tracks.get(index).incrementCount();
-            isPlaying = true;}
+                Track track = tracks.get(index);
+                player.startPlaying(track.getFilename());
+                System.out.println("Now playing: " + track.getArtist() + " - " + track.getTitle());
+                tracks.get(index).incrementCount();
+                isPlaying = true;}
             else{
                 System.out.println("Ya se esta reproduciendo una cancion");
             }
@@ -162,6 +171,10 @@ public class MusicOrganizer
             tracks.remove(index);
         }
     }
+
+    /**
+     * añade genero a la track
+     */
 
     public void añadirGenero(int index,String newGenero){
         Track track = tracks.get(index);
